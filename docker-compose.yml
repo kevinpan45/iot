@@ -1,0 +1,43 @@
+version: "3"
+services:
+  iot-biz:
+    image: kevinpan45/iot-biz:latest
+    restart: always
+    ports: 
+      - 12380:80
+    network_mode: host
+  emqx-broker:
+    image: emqx/emqx:4.2.6
+    restart: always
+    ports: 
+      - 1883:1883
+      - 8083:8083
+      - 8883:8883
+      - 8084:8084
+      - 18083:18083
+    network_mode: host
+  nodered:
+    image: nodered/node-red:latest
+    restart: always
+    ports: 
+      - 1880:1880
+    network_mode: host
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+    network_mode: host
+  kafka:
+    image: wurstmeister/kafka:latest
+    ports:
+      - 9094:9094
+    network_mode: host
+    environment:
+      HOSTNAME_COMMAND: "docker info | grep ^Name: | cut -d' ' -f 2"
+      KAFKA_ZOOKEEPER_CONNECT: localhost:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://:9092,OUTSIDE://_{HOSTNAME_COMMAND}:9094
+      KAFKA_LISTENERS: INSIDE://:9092,OUTSIDE://:9094
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

@@ -23,3 +23,7 @@ See [Node-Red docs](https://nodered.org/docs) here.
 ### Test
 * Send MQTT msg, use client like [MQTTX](https://mqttx.app/cn/)
 * Iot-Biz service instance console will log received data
+
+### Connection Management
+To view the EMQX Broker dashboard, use your browser to open: http://localhost:18083  
+Default account : admin/public

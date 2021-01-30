@@ -12,9 +12,14 @@ public class IotBizApplication {
 		SpringApplication.run(IotBizApplication.class, args);
 	}
 
-	@KafkaListener(topics = "transportMessageForEvent", groupId = "iot-biz-backend")
-    public void handler(ConsumerRecord<String, String> record) {
-        System.out.println("Recieve data : " + record.value());
+	@KafkaListener(topics = "messageForEvent", groupId = "iot-biz-backend")
+    public void eventHandler(ConsumerRecord<String, String> record) {
+        System.out.println("Recieve event data : " + record.value());
+	}
+	
+	@KafkaListener(topics = "messageForProperty", groupId = "iot-biz-backend")
+    public void propertyHandler(ConsumerRecord<String, String> record) {
+        System.out.println("Recieve property data : " + record.value());
     }
 
 }

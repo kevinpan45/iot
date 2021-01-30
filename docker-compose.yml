@@ -21,6 +21,9 @@ services:
     restart: always
     ports: 
       - 1880:1880
+    user: root
+    volumes:  
+      - /tmp/iot-biz-data/node_red_data:/data
     network_mode: host
   zookeeper:
     image: wurstmeister/zookeeper

@@ -14,11 +14,6 @@
 ```
 docker-compose up
 ```
-### Configure Node-Red
-* To view the Node-Red dashboard after running, use your browser to open: http://localhost:1880
-* Install node-red-contrib-kafka-client
-* Import flow file nodered-flow.json and deploy.
-See [Node-Red docs](https://nodered.org/docs) here.
 
 ### Test
 * Send MQTT msg, use client like [MQTTX](https://mqttx.app/cn/)

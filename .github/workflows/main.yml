@@ -24,7 +24,7 @@ jobs:
     - name: Build image
       run: docker build . --file Dockerfile --tag kevinpan45/iot-biz:latest
     - name: Push to Docker Hub
-      uses: elgohr/Publish-Docker-Github-Action@master
+      uses: elgohr/Publish-Docker-Github-Action@v5
       with:
         name: kevinpan45/iot-biz:latest
         username: ${{ secrets.DOCKER_USERNAME }}
